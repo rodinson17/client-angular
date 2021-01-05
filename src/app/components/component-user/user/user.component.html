@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="text-center my-4">{{ actionTitle }}</h2>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-3"></div>
+
+    <div class="col-sm-12 col-md-6 style-content-form">
+      <form (ngSubmit)="onSubmit()" [formGroup]="userForm" class="my-3">
+
+        <div class="mb-3">
+          <label class="form-label">Identificación</label>
+
+          <input formControlName="identification"
+            id="identification" name="identification"
+            type="text" class="form-control" placeholder="Identificación">
+
+          <div *ngIf="identification.invalid && identification.touched" class="text-left error">
+            El campo titulo es requerido.
+          </div>
+        </div>
+
+
+        <button [disabled]="userForm.invalid" class="w-100 btn btn-primary" type="submit">{{ actionbutton }}</button>
+      </form>
+    </div>
+
+    <div class="col-sm-12 col-md-3"></div>
+  </div>
+</div>
+

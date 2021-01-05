@@ -1,0 +1,27 @@
+.style-icon-pc {
+  background: #d44540eb;
+  padding: 1rem;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.style-icon-pc::before {
+  content: "";
+  height: 60px;
+  width: 65px;
+  background: rgb(215 82 78 / 22%);
+  position: absolute;
+  left: 23px;
+  top: 67px;
+  transform: rotate(20deg);
+  z-index: -1;
+  border-radius: 6px;
+}
+
+.style-a-lm {
+  color: #007bff;
+}
+.style-a-lm:hover {
+  color: #d6504c;
+  text-decoration: none;
+}

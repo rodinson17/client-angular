@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a [routerLink]="['']" class="navbar-brand" href="#">
+      <img [src]="'/assets/img/logo/logo-angular.png'" alt="" width="130" height="auto">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- <li *ngIf="loginUser" class="nav-item"> -->
+        <li class="nav-item">
+          <a [routerLink]="['usuarios']" class="nav-link">usuarios</a>
+        </li>
+        <!-- <li *ngIf="loginUser" class="nav-item"> -->
+        <li class="nav-item">
+          <a [routerLink]="['posts']" class="nav-link">Posts</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto nav-margin-movil">
+        <li *ngIf="!loginUser" class="nav-item">
+          <a [routerLink]="['login']" class="nav-link active" aria-current="page" href="#">Login</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a [routerLink]="['login-reactive']" class="nav-link active" aria-current="page" href="#">Login Reactive</a>
+        </li> -->
+        <li *ngIf="loginUser" class="nav-item">
+          <a (click)="onLogout()" class="nav-link" href="#">Logout</a>
+        </li>
+        <li *ngIf="!loginUser" class="nav-item">
+          <a [routerLink]="['registrase']" class="nav-link" href="#">Registrase</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,1 +1,50 @@
-<p>post works!</p>
+<div class="container">
+  <h2 class="text-center my-4">{{ actionTitle }}</h2>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-3"></div>
+
+    <div class="col-sm-12 col-md-6 style-content-form">
+      <form (ngSubmit)="onSubmit()" [formGroup]="postForm" class="my-3">
+        <div class="mb-3">
+          <label class="form-label">State</label>
+          <!-- <select (change)="onChange($event)" formControlName="userId" class="form-select"> -->
+          <select formControlName="userId" class="form-select">
+            <!-- <option selected disabled value="">Selecione un usuario</option> -->
+            <option *ngFor="let user of listUsers; let i = index" [ngValue]="user.id"
+              [selected]="userId.value == user.id">
+              {{ user.name }} {{ user.lastName }}
+            </option>
+          </select>
+          <div class="invalid-feedback">
+            Please select a valid state.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Título</label>
+
+          <input formControlName="title"
+            id="title" name="title"
+            type="text" class="form-control" placeholder="Título">
+
+          <div *ngIf="title.invalid && title.touched" class="text-left error">
+            El campo titulo es requerido.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Descripción</label>
+          <textarea formControlName="body" name="body" class="form-control" id="body" rows="4"></textarea>
+          <div *ngIf="body.invalid && body.touched" class="text-left error">
+            El campo Descripción es requerido y debe tener menos de 300 caracteres.
+          </div>
+        </div>
+
+        <button [disabled]="postForm.invalid" class="w-100 btn btn-primary" type="submit">{{ actionbutton }}</button>
+      </form>
+    </div>
+
+    <div class="col-sm-12 col-md-3"></div>
+  </div>
+</div>

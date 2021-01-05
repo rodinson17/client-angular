@@ -35,22 +35,35 @@ export class DataService {
     this.httpClient.get(endpoint)
       .subscribe(
         (posts: Post[]) => {
-          console.log("list:.. " + posts)
           this.listPost = posts;
+          console.log("listado: ", this.listPost);
         },
         error => console.log("Error: " + error)
       );
   }
 
-  getPostForID() {
-    let id: number = 1;
-    this.httpClient.get<Post>(endpoint + '/' + id)
-      .subscribe(
-        (post) => {
-          console.log("result....: " + JSON.stringify(post));
-        },
-        error => console.log("Error: " + JSON.stringify(error))
-      );
+  getPostForID(id): Observable<any> {
+    return this.httpClient.get(endpoint + '/' + id)
+      .pipe( map(this.extractData),
+             catchError( this.handleError() )
+    );
+  }
+
+  createNewPost(post: any): Observable<any> {
+    return this.httpClient.post(endpoint, post)
+      .pipe( catchError(this.handleError) );
+  }
+
+  updatePost(post: Post): Observable<any> {
+    return this.httpClient.put(endpoint + `/${ post.id }`, post)
+      .pipe( catchError(this.handleError) );
+  }
+
+  deletePost(idPost: any, index: any): Observable<any> {
+    this.listPost.splice(index, 1);
+
+    return this.httpClient.delete(endpoint + `/${ idPost }`)
+      .pipe( catchError(this.handleError) );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

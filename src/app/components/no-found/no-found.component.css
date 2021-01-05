@@ -1,0 +1,19 @@
+
+.error-code {
+  font-size: 12rem;
+  text-align: center;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.message {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.back-link {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+
